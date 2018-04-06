@@ -1,25 +1,18 @@
 {
-    "window.menuBarVisibility": "default",
-    "files.autoSave": "afterDelay",
-    "git.enableSmartCommit": true,
-    "emmet.syntaxProfiles": {
+  "window.menuBarVisibility": "default",
+  "files.autoSave": "afterDelay",
+  "git.enableSmartCommit": true,
+  "emmet.syntaxProfiles": {
     "blade": "html"
-    },
-    "extensions.ignoreRecommendations": false,
-    "[javascript]": {
-        
-    },
-    "cSpell.userWords": [
-        "unmount"
-    ],
-    "editor.formatOnSave": true,
-    "window.zoomLevel": 0,
-    "prettier.cssEnable": [
-        "css",
-        "less",
-        "scss"
-    ],
-    "prettier.jsonEnable": [
-        "json"
-    ]
+  },
+  "extensions.ignoreRecommendations": false,
+  "[javascript]": {},
+  "cSpell.userWords": ["unmount"],
+  "editor.formatOnSave": true,
+  "window.zoomLevel": 0,
+  "prettier.cssEnable": ["css", "less", "scss"],
+  "prettier.jsonEnable": ["json"],
+  "editor.tabSize": 2,
+  "javascript.validate.enable": false,
+  "editor.snippetSuggestions": "top"
 }

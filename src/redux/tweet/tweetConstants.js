@@ -1,0 +1,5 @@
+export const getTweets = 'TWEETS/GET_ALL'
+export const getCategories = 'TWEETS/GET_CATEGORIES'
+export const selectCategory = 'TWEETS/SELECT_CATEGORY'
+export const setTweet = 'TWEETS/SET'
+export const addTweet = 'TWEETS/ADD'
