@@ -40,7 +40,6 @@ class MainContainer extends React.Component {
           <br />
           <Switch>
             <Route
-              exact
               path="/"
               render={() => {
                 if (this.props.user.logged) {
