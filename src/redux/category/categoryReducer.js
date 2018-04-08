@@ -18,7 +18,7 @@ const categoryReducer = (state = initialState, action) => {
     }
     case constants.setActiveCategory: {
       let newState = _.cloneDeep(state)
-      newState.activeCategory = action.payload.id
+      newState.activeCategory = action.payload.name
       return newState
     }
     default: {

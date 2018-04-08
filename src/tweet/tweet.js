@@ -9,7 +9,8 @@ import AddTweet from './addTweet'
 
 const mapStateToProps = state => {
   return {
-    tweets: state.tweet.tweets
+    tweets: state.tweet.tweets,
+    activeCategory: state.category.activeCategory
   }
 }
 
@@ -30,7 +31,7 @@ class TweetComponent extends Component {
           <br />
         </div>
         <div>
-          <TweetList tweets={this.props.tweets} />
+          <TweetList tweets={this.props.tweets} activeCategory={this.props.activeCategory} />
         </div>
       </div>
     )

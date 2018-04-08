@@ -16,11 +16,11 @@ export const setCategory = (id, name) => {
   }
 }
 
-export const setActiveCategory = id => {
+export const setActiveCategory = name => {
   return {
     type: constants.setActiveCategory,
     payload: {
-      id
+      name
     }
   }
 }
