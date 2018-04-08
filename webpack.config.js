@@ -7,6 +7,7 @@ module.exports = {
   },
   output: {
     path: path.resolve(__dirname, 'build'),
+    publicPath: '/assets/',
     filename: 'bundle.js'
   },
   module: {
@@ -22,5 +23,8 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html'
     })
-  ]
+  ],
+  devServer: {
+    historyApiFallback: true
+  }
 }

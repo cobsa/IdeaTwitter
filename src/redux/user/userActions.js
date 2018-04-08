@@ -25,9 +25,10 @@ export const setLogout = () => {
     type: userConstants.setLogout
   }
 }
-export const logoutAction = {
-  type: userConstants.logout,
-  payload: {}
+export const logoutAction = () => {
+  return {
+    type: userConstants.logout
+  }
 }
 
 export const signupAction = (email, username, password, password_again) => {

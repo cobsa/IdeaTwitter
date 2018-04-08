@@ -10,7 +10,6 @@ import * as categoryActions from '../category/categoryActions'
 
 export function updateLogin() {
   return eventChannel(function(emitter) {
-    console.log('listener online')
     const unsubscribe = auth.onAuthStateChanged(user => {
       if (user) {
         // User is logged in
@@ -47,7 +46,6 @@ export function* watchLogin() {
 export function* logout() {
   if (auth.currentUser) {
     auth.signOut()
-    yield put(actions.setLogout)
   }
 }
 

@@ -1,5 +1,6 @@
 import * as _ from 'lodash'
 import * as tweetConstants from './tweetConstants'
+import * as userConstants from '../user/userConstants'
 
 const initialState = {
   tweets: []
@@ -21,6 +22,10 @@ const tweetReducer = (state = initialState, action) => {
         return b.time.getTime() - a.time.getTime()
       })
       return newState
+    }
+    case userConstants.setLogout: {
+      // Clear store
+      return initialState
     }
     default: {
       return _.cloneDeep(state)

@@ -1,5 +1,6 @@
 import * as _ from 'lodash'
 import * as constants from './categoryConstants'
+import * as userConstants from '../user/userConstants'
 
 const initialState = {
   categories: [],
@@ -21,6 +22,10 @@ const categoryReducer = (state = initialState, action) => {
       let newState = _.cloneDeep(state)
       newState.activeCategory = action.payload.name
       return newState
+    }
+    case userConstants.setLogout: {
+      // Clear store
+      return initialState
     }
     default: {
       return _.cloneDeep(state)

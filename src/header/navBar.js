@@ -1,6 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap'
+import { Link } from 'react-router-dom'
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -19,7 +20,10 @@ class NavBar extends React.Component {
   }
 
   handleLogout(event) {
-    this.props.logout()
+    if (this.props.logged) {
+      this.props.logout()
+    } else {
+    }
   }
   render() {
     return (
@@ -30,12 +34,18 @@ class NavBar extends React.Component {
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>
               <NavItem>
-                <NavLink href="/components/">Profile</NavLink>
+                <Link className="nav-link" to="/about">
+                  About
+                </Link>
               </NavItem>
               <NavItem>
-                <NavLink onClick={this.handleLogout}>
-                  {this.props.logged ? 'Sign Out' : 'Sign in'}
-                </NavLink>
+                {this.props.logged ? (
+                  <NavLink onClick={this.handleLogout}>Sign out</NavLink>
+                ) : (
+                  <Link className="nav-link" to="/">
+                    Sign in
+                  </Link>
+                )}
               </NavItem>
             </Nav>
           </Collapse>

@@ -11,6 +11,7 @@ import Header from '../header/header'
 import SidePanel from '../sidePanel/sidePanel'
 import Tweet from '../tweet/tweet'
 import UserPanel from '../userPanel/userPanel'
+import About from '../about/About'
 // Bootstrap css
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -40,6 +41,7 @@ class MainContainer extends React.Component {
           <br />
           <Switch>
             <Route
+              exact
               path="/"
               render={() => {
                 if (this.props.user.logged) {
@@ -59,6 +61,7 @@ class MainContainer extends React.Component {
                 }
               }}
             />
+            <Route path="/about" component={About} />
           </Switch>
         </Container>
       </div>
