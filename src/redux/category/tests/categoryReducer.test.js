@@ -10,12 +10,7 @@ test('Should return initial state', () => {
 
 test('Should add category to storage', () => {
   expect(categoryReducer(undefined, actions.setCategory('id-string', 'name'))).toEqual({
-    categories: [
-      {
-        id: 'id-string',
-        name: 'name'
-      }
-    ],
+    categories: ['name'],
     activeCategory: null
   })
 })

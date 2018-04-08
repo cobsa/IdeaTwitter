@@ -8,7 +8,6 @@ class TweetItem extends Component {
       <div>
         <Card body className="text-center">
           <CardText>{this.props.tweet}</CardText>
-          <CardFooter>{this.props.categories.join(' ')}</CardFooter>
         </Card>
       </div>
     )

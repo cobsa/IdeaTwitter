@@ -16,8 +16,9 @@ class AddTweet extends Component {
     const tweet = event.target.value
     const hashtags = []
     let words = tweet.split(' ')
+    // TODO: Naive hashtag founding
     words.forEach(word => {
-      if (word.charAt(0) === '#') {
+      if (word.charAt(0) === '#' && word.length >= 2) {
         hashtags.push(word)
       }
     })
@@ -28,13 +29,20 @@ class AddTweet extends Component {
   }
   handleSubmit(e) {
     e.preventDefault()
-    if (this.state.tweet !== '') {
-      this.props.addTweet(this.state.tweet, this.state.hashtags)
-      this.setState({
-        tweet: '',
-        hashtags: []
-      })
+    if (this.state.tweet === '') {
+      // Handle empty field
+      return
     }
+    if (this.state.hashtags.length === 0) {
+      // Handle no hashtags
+      return
+    }
+
+    this.props.addTweet(this.state.tweet, this.state.hashtags)
+    this.setState({
+      tweet: '',
+      hashtags: []
+    })
   }
   render() {
     return (

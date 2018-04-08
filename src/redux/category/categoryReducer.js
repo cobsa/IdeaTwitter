@@ -10,10 +10,11 @@ const categoryReducer = (state = initialState, action) => {
   switch (action.type) {
     case constants.setCategory: {
       let newState = _.cloneDeep(state)
-      newState.categories.push({
-        id: action.payload.id,
-        name: action.payload.name
-      })
+      if (!newState.categories.includes(action.payload.name)) {
+        // Only add category if it doesn't exist
+        newState.categories.push(action.payload.name)
+      }
+
       return newState
     }
     case constants.setActiveCategory: {

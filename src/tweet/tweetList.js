@@ -1,11 +1,19 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { Card, CardText } from 'reactstrap'
 
 import TweetItem from './tweetItem'
 
 class TweetList extends Component {
   render() {
     let { tweets, activeCategory } = this.props
+    if (tweets.length === 0) {
+      return (
+        <Card body className="text-center">
+          <CardText>There aren't any ideas, yet.</CardText>
+        </Card>
+      )
+    }
     let tweetList = tweets.map(tweet => {
       if (activeCategory === null || tweet.categories.includes(activeCategory)) {
         return (

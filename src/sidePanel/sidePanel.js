@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import { ListGroup } from 'reactstrap'
+import { ListGroup, Card, CardText } from 'reactstrap'
 
 import Category from './category'
 import * as actions from '../redux/category/categoryActions'
@@ -24,11 +24,18 @@ function mapDispatchToProps(dispatch) {
 class SidePanelComponent extends Component {
   render() {
     let { categories, activeCategory } = this.props
+    if (categories.length === 0) {
+      return (
+        <Card body className="text-center">
+          <CardText>There aren't any hastags, yet.</CardText>
+        </Card>
+      )
+    }
     let categoryList = categories.map(category => {
       return (
         <Category
-          name={category.name}
-          key={category.id}
+          name={category}
+          key={category}
           setActive={this.props.setActiveCategory}
           activeCategory={activeCategory}
         />
