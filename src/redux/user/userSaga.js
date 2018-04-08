@@ -6,6 +6,7 @@ import { auth } from '../firebase'
 import * as constants from './userConstants'
 import * as actions from './userActions'
 import * as tweetActions from '../tweet/tweetActions'
+import * as categoryActions from '../category/categoryActions'
 
 export function updateLogin() {
   return eventChannel(function(emitter) {
@@ -16,6 +17,8 @@ export function updateLogin() {
         emitter(actions.setLogin(user.email, user.uid, user.displayName))
         // Fetch Tweets
         emitter(tweetActions.getTweets())
+        // Fetch categories
+        emitter(categoryActions.getCategories())
       } else {
         // User is logged out
         emitter(actions.setLogout())

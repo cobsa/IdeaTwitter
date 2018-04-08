@@ -37,6 +37,7 @@ class MainContainer extends React.Component {
       <div>
         <Header />
         <Container fluid={true}>
+          <br />
           <Row>
             {' '}
             <Col sm={{ size: '2', offset: 0 }}>

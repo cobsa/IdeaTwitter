@@ -2,7 +2,7 @@ import tweetReducer from '../tweetReducer'
 import * as actions from '../tweetActions'
 
 test('Should return initial state', () => {
-  expect(tweetReducer(undefined, {})).toEqual({ tweets: {} })
+  expect(tweetReducer(undefined, {})).toEqual({ tweets: [] })
 })
 
 test('Should add tweet to storage', () => {
@@ -12,13 +12,14 @@ test('Should add tweet to storage', () => {
       actions.setTweet('tweet', ['category1', 'category2'], 'username', 'time', 'uid')
     )
   ).toEqual({
-    tweets: {
-      uid: {
+    tweets: [
+      {
         categories: ['category1', 'category2'],
         time: 'time',
         tweet: 'tweet',
-        username: 'username'
+        username: 'username',
+        uid: 'uid'
       }
-    }
+    ]
   })
 })

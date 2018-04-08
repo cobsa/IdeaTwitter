@@ -8,13 +8,15 @@ import { routerMiddleware } from 'react-router-redux'
 
 import tweetReducer from './tweet/tweetReducer'
 import userReducer from './user/userReducer'
+import categoryReducer from './category/categoryReducer'
 
 import rootSaga from './rootSaga'
 
 const rootReducer = combineReducers({
   router: routerReducer,
   tweet: tweetReducer,
-  user: userReducer
+  user: userReducer,
+  category: categoryReducer
 })
 
 const history = createBrowserHistory()

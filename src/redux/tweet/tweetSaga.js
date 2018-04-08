@@ -1,26 +1,40 @@
 import { all, call, take, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { eventChannel } from 'redux-saga'
 // import firebases configured instance
 import { firestore, auth } from '../firebase'
-// Required for side-effects
 
 import * as constants from './tweetConstants'
 import * as actions from './tweetActions'
-import { eventChannel } from 'redux-saga'
 
 const db = firestore
 
 export function* addTweet(action) {
-  const tweetsRef = db.collection('users/' + auth.currentUser.uid + '/tweets').add({
-    tweet: action.payload.tweet,
-    categories: action.payload.categories,
-    time: new Date(Date.now())
-  })
+  // Add tweet with it's categories to tweet collection
+  db
+    .collection('/tweets')
+    .add({
+      uid: auth.currentUser.uid,
+      tweet: action.payload.tweet,
+      categories: action.payload.categories,
+      time: new Date(Date.now())
+    })
+    .then(tweetsRef => {
+      // Add categories to category collection
+      action.payload.categories.forEach(category => {
+        db.collection('/categories').add({
+          tweetid: tweetsRef.id,
+          category,
+          uid: auth.currentUser.uid
+        })
+      })
+    })
 }
 
 export function getTweets() {
   return eventChannel(function(emitter) {
     const unsubscribe = db
-      .collection('users/' + auth.currentUser.uid + '/tweets')
+      .collection('/tweets')
+      .where('uid', '==', auth.currentUser.uid)
       .onSnapshot(snapshot => {
         snapshot.docChanges.forEach(change => {
           if (change.type === 'added') {

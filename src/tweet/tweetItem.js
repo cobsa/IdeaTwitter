@@ -5,18 +5,19 @@ import { Card, CardText, CardFooter } from 'reactstrap'
 class TweetItem extends Component {
   render() {
     return (
-      <p>
+      <div>
         <Card body className="text-center">
           <CardText>{this.props.tweet}</CardText>
-          <CardFooter>{'#Something #Nothing'}</CardFooter>
+          <CardFooter>{this.props.categories.join(' ')}</CardFooter>
         </Card>
-      </p>
+      </div>
     )
   }
 }
 
 TweetItem.propTypes = {
-  tweet: PropTypes.string
+  tweet: PropTypes.string,
+  categories: PropTypes.arrayOf(String)
 }
 
 export default TweetItem

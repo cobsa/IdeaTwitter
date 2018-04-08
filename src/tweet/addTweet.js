@@ -14,7 +14,13 @@ class AddTweet extends Component {
   }
   handleTweet(event) {
     const tweet = event.target.value
-    const hashtags = ['test', 'admin']
+    const hashtags = []
+    let words = tweet.split(' ')
+    words.forEach(word => {
+      if (word.charAt(0) === '#') {
+        hashtags.push(word)
+      }
+    })
     this.setState({
       tweet,
       hashtags

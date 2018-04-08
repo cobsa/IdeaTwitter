@@ -6,6 +6,7 @@ import * as actions from '../redux/tweet/tweetActions'
 
 import TweetList from './tweetList'
 import AddTweet from './addTweet'
+
 const mapStateToProps = state => {
   return {
     tweets: state.tweet.tweets
@@ -24,12 +25,13 @@ class TweetComponent extends Component {
   render() {
     return (
       <div>
-        <p>
+        <div>
           <AddTweet addTweet={this.props.addTweet} />
-        </p>
-        <p>
+          <br />
+        </div>
+        <div>
           <TweetList tweets={this.props.tweets} />
-        </p>
+        </div>
       </div>
     )
   }
