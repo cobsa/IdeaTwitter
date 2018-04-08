@@ -38,27 +38,29 @@ class MainContainer extends React.Component {
         <Header />
         <Container fluid={true}>
           <br />
-          <Row>
-            {' '}
-            <Col sm={{ size: '2', offset: 0 }}>
-              <SidePanel />
-            </Col>
-            <Col sm={{ size: '4', offset: 1 }}>
-              <Switch>
-                <Route
-                  exact
-                  path="/"
-                  render={() => {
-                    if (this.props.user.logged) {
-                      return <Tweet />
-                    } else {
-                      return <UserPanel />
-                    }
-                  }}
-                />
-              </Switch>
-            </Col>
-          </Row>
+          <Switch>
+            <Route
+              exact
+              path="/"
+              render={() => {
+                if (this.props.user.logged) {
+                  return (
+                    <Row>
+                      {' '}
+                      <Col sm={{ size: '2', offset: 0 }}>
+                        <SidePanel />
+                      </Col>
+                      <Col sm={{ size: '4', offset: 1 }}>
+                        <Tweet />
+                      </Col>
+                    </Row>
+                  )
+                } else {
+                  return <UserPanel />
+                }
+              }}
+            />
+          </Switch>
         </Container>
       </div>
     )
