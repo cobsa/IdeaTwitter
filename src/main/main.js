@@ -1,14 +1,11 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
 import { Switch, Route } from 'react-router-dom'
-import { Container, Row, Col } from 'reactstrap'
+import { Container } from 'reactstrap'
 // actions
 import * as userActions from '../redux/user/userActions'
-import * as tweetActions from '../redux/tweet/tweetActions'
 // Components
 import Header from '../header/header'
-import SidePanel from '../sidePanel/sidePanel'
 import Tweet from '../tweet/tweet'
 import UserPanel from '../userPanel/userPanel'
 import About from '../about/About'
@@ -45,17 +42,7 @@ class MainContainer extends React.Component {
               path="/"
               render={() => {
                 if (this.props.user.logged) {
-                  return (
-                    <Row>
-                      {' '}
-                      <Col sm={{ size: '2', offset: 0 }}>
-                        <SidePanel />
-                      </Col>
-                      <Col sm={{ size: '4', offset: 1 }}>
-                        <Tweet />
-                      </Col>
-                    </Row>
-                  )
+                  return <Tweet />
                 } else {
                   return <UserPanel />
                 }

@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
+import { Row, Col } from 'reactstrap'
 
 import * as actions from '../redux/tweet/tweetActions'
 
 import TweetList from './tweetList'
 import AddTweet from './addTweet'
+import SidePanel from '../sidePanel/sidePanel'
 
 const mapStateToProps = state => {
   return {
@@ -25,15 +27,21 @@ function mapDispatchToProps(dispatch) {
 class TweetComponent extends Component {
   render() {
     return (
-      <div>
-        <div>
-          <AddTweet addTweet={this.props.addTweet} />
-          <br />
-        </div>
-        <div>
-          <TweetList tweets={this.props.tweets} activeCategory={this.props.activeCategory} />
-        </div>
-      </div>
+      <Row>
+        {' '}
+        <Col sm={{ size: '2', offset: 0 }}>
+          <SidePanel />
+        </Col>
+        <Col sm={{ size: '4', offset: 1 }}>
+          <div>
+            <AddTweet addTweet={this.props.addTweet} />
+            <br />
+          </div>
+          <div>
+            <TweetList tweets={this.props.tweets} activeCategory={this.props.activeCategory} />
+          </div>
+        </Col>
+      </Row>
     )
   }
 }

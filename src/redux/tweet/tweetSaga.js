@@ -1,4 +1,4 @@
-import { all, call, take, put, takeEvery, takeLatest } from 'redux-saga/effects'
+import { all, call, take, put, takeEvery } from 'redux-saga/effects'
 import { eventChannel, END } from 'redux-saga'
 // import firebases configured instance
 import { firestore, auth } from '../firebase'
@@ -70,7 +70,6 @@ export function* watchGetTweets() {
       yield put(emitter)
     }
   } finally {
-    console.log('Done')
   }
 }
 

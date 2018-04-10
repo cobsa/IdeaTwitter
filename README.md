@@ -1,13 +1,8 @@
-# react_start_template
-Startup code for react project. Configured to use babel and webpack with react
+# IdeaTwitter
+
+Simple twitter inspired website to log your ideas/todo and categorizing them using hashtags. Built using React/Redux.
 
 ## Usage
-
-Clone repo
-
-```
-git pull https://github.com/cobsa/react_start_template.git
-```
 
 ### Install depencies
 
@@ -15,7 +10,7 @@ git pull https://github.com/cobsa/react_start_template.git
 yarn
 ```
 
-or 
+or
 
 ```
 npm install
@@ -27,7 +22,7 @@ npm install
 yarn run dev
 ```
 
-or 
+or
 
 ```
 npm run dev
