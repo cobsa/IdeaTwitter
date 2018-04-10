@@ -1,5 +1,5 @@
 import { all, call, take, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { eventChannel } from 'redux-saga'
+import { eventChannel, END } from 'redux-saga'
 // import firebases configured instance
 import { firestore, auth } from '../firebase'
 
@@ -35,21 +35,26 @@ export function getTweets() {
     const unsubscribe = db
       .collection('/tweets')
       .where('uid', '==', auth.currentUser.uid)
-      .onSnapshot(snapshot => {
-        snapshot.docChanges.forEach(change => {
-          if (change.type === 'added') {
-            emitter(
-              actions.setTweet(
-                change.doc.data()['tweet'],
-                change.doc.data()['categories'],
-                auth.currentUser.displayName,
-                change.doc.data()['time'],
-                change.doc.id
+      .onSnapshot(
+        snapshot => {
+          snapshot.docChanges.forEach(change => {
+            if (change.type === 'added') {
+              emitter(
+                actions.setTweet(
+                  change.doc.data()['tweet'],
+                  change.doc.data()['categories'],
+                  auth.currentUser.displayName,
+                  change.doc.data()['time'],
+                  change.doc.id
+                )
               )
-            )
-          }
-        })
-      })
+            }
+          })
+        },
+        () => {
+          emitter(END)
+        }
+      )
     // The subscriber must return an unsubscribe function
     return () => {
       unsubscribe()
@@ -58,8 +63,7 @@ export function getTweets() {
 }
 
 export function* watchGetTweets() {
-  const action = yield take(constants.getTweets)
-  const chan = yield call(getTweets, action)
+  const chan = yield call(getTweets)
   try {
     while (true) {
       const emitter = yield take(chan)
@@ -74,5 +78,5 @@ export function* watchAddTweet() {
   yield takeEvery(constants.addTweet, addTweet)
 }
 export default function* twitterSaga() {
-  yield all([watchGetTweets(), watchAddTweet()])
+  yield all([takeEvery(constants.getTweets, watchGetTweets), watchAddTweet()])
 }

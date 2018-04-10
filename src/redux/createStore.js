@@ -21,7 +21,7 @@ const rootReducer = combineReducers({
 
 const history = createBrowserHistory()
 const sagaMiddleware = createSageMiddleware()
-const middleware = [routerMiddleware(history), logger, sagaMiddleware]
+const middleware = [routerMiddleware(history), sagaMiddleware, logger]
 
 const store = createStore(rootReducer, applyMiddleware(...middleware))
 sagaMiddleware.run(rootSaga)

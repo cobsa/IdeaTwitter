@@ -1,5 +1,5 @@
 import { all, call, take, put, takeEvery, takeLatest } from 'redux-saga/effects'
-import { eventChannel } from 'redux-saga'
+import { eventChannel, END } from 'redux-saga'
 // import firebases configured instance
 import { firestore, auth } from '../firebase'
 
@@ -13,13 +13,18 @@ export function getCategories() {
     const unsubscribe = db
       .collection('/categories')
       .where('uid', '==', auth.currentUser.uid)
-      .onSnapshot(snapshot => {
-        snapshot.docChanges.forEach(change => {
-          if (change.type === 'added') {
-            emitter(actions.setCategory(change.doc.id, change.doc.data()['category']))
-          }
-        })
-      })
+      .onSnapshot(
+        snapshot => {
+          snapshot.docChanges.forEach(change => {
+            if (change.type === 'added') {
+              emitter(actions.setCategory(change.doc.id, change.doc.data()['category']))
+            }
+          })
+        },
+        () => {
+          emitter(END)
+        }
+      )
     // The subscriber must return an unsubscribe function
     return () => {
       unsubscribe()
@@ -28,18 +33,20 @@ export function getCategories() {
 }
 
 export function* watchGetCategories() {
-  const action = yield take(constants.getCategories)
-  const chan = yield call(getCategories, action)
-  try {
-    while (true) {
-      const emitter = yield take(chan)
-      yield put(emitter)
+  while (true) {
+    yield console.log('Watcher started')
+    const chan = yield call(getCategories)
+    try {
+      while (true) {
+        const emitter = yield take(chan)
+        yield put(emitter)
+      }
+    } finally {
+      yield console.log('Done')
     }
-  } finally {
-    console.log('Done')
   }
 }
 
 export default function* categorySaga() {
-  yield all([watchGetCategories()])
+  yield all([takeEvery(constants.getCategories, watchGetCategories)])
 }

@@ -11,7 +11,7 @@ export default class About extends Component {
             <p>
               Simple demo site made using Firebase hosting and Firestorm databases. Frontend is
               developed using ReactJS, Redux and Saga. Authentication is handled by Google firebase
-              services and so is completely safe.
+              authentication services.
             </p>
           </Container>
         </Jumbotron>

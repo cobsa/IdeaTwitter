@@ -18,6 +18,7 @@ class AddTweet extends Component {
     let words = tweet.split(' ')
     // TODO: Naive hashtag founding
     words.forEach(word => {
+      word = word.trim()
       if (word.charAt(0) === '#' && word.length >= 2) {
         hashtags.push(word)
       }
