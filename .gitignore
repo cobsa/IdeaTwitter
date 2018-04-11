@@ -44,3 +44,7 @@ node_modules
 
 #Distribution folder
 dist
+
+¤Ignore production config for firebase
+
+src/redux/firebase-production-config.js

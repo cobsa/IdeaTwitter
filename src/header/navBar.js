@@ -20,9 +20,9 @@ class NavBar extends React.Component {
   }
 
   handleLogout(event) {
+    event.preventDefault()
     if (this.props.logged) {
       this.props.logout()
-    } else {
     }
   }
   render() {

@@ -1,13 +1,21 @@
 import firebase from 'firebase'
-import 'firebase/firestore'
+// Required for side-effects
+import 'firebase/firestore' // eslint-disable-line
 
-const config = {
-  apiKey: 'AIzaSyBRO1gSjSzeqxnNHSOj7RJxiOg--M9BcGY',
-  authDomain: 'ideatwitter-95e0d.firebaseapp.com',
-  databaseURL: 'https://ideatwitter-95e0d.firebaseio.com',
-  projectId: 'ideatwitter-95e0d',
-  storageBucket: 'ideatwitter-95e0d.appspot.com',
-  messagingSenderId: '29390856035'
+let config
+if (process.env.NODE_ENV === 'development') {
+  config = {
+    apiKey: 'AIzaSyBRO1gSjSzeqxnNHSOj7RJxiOg--M9BcGY',
+    authDomain: 'ideatwitter-95e0d.firebaseapp.com',
+    databaseURL: 'https://ideatwitter-95e0d.firebaseio.com',
+    projectId: 'ideatwitter-95e0d',
+    storageBucket: 'ideatwitter-95e0d.appspot.com',
+    messagingSenderId: '29390856035'
+  }
+}
+
+if (process.env.NODE_ENV === 'production') {
+  config = require('./firebase-production-config')
 }
 
 if (!firebase.apps.length) {

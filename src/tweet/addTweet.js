@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { InputGroup, Input, InputGroupAddon, Button, Label } from 'reactstrap'
+import { InputGroup, Input, InputGroupAddon, Button } from 'reactstrap'
 
 class AddTweet extends Component {
   constructor() {
