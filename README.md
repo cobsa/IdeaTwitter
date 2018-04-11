@@ -1,10 +1,8 @@
 # IdeaTwitter
 
-Simple twitter inspired website to log your ideas/todo and categorizing them using hashtags. Built using React/Redux.
+Simple twitter inspired website to log your ideas/todos and categorizing them using hashtags. Built using React/Redux and using Firebase Firestore as a backend.
 
-## Usage
-
-### Install depencies
+### Install dependencies
 
 ```
 yarn
