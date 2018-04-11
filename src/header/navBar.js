@@ -28,8 +28,8 @@ class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <Navbar color="light" light expand="md">
-          <NavbarBrand>IdeaTwitter</NavbarBrand>
+        <Navbar color="primary" dark expand="md">
+          <NavbarBrand href="/">IdeaTwitter</NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.isOpen} navbar>
             <Nav className="ml-auto" navbar>

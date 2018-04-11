@@ -10,7 +10,7 @@ import Tweet from '../tweet/tweet'
 import UserPanel from '../userPanel/userPanel'
 import About from '../about/About'
 // Bootstrap css
-import 'bootstrap/dist/css/bootstrap.min.css'
+import '../assets/css/bootstrap.min.css'
 
 const mapStateToProps = state => {
   return {

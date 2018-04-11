@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Row, Col } from 'reactstrap'
 
 import * as actions from '../redux/tweet/tweetActions'
+import * as categoryActions from '../redux/category/categoryActions'
 
 import TweetList from './tweetList'
 import AddTweet from './addTweet'
@@ -20,6 +21,9 @@ function mapDispatchToProps(dispatch) {
   return {
     addTweet: (tweet, hashtags) => {
       dispatch(actions.addTweet(tweet, hashtags))
+    },
+    setActiveCategory: category => {
+      dispatch(categoryActions.setActiveCategory(category))
     }
   }
 }
@@ -32,13 +36,17 @@ class TweetComponent extends Component {
         <Col sm={{ size: '2', offset: 0 }}>
           <SidePanel />
         </Col>
-        <Col sm={{ size: '4', offset: 1 }}>
+        <Col sm={{ size: '8', offset: 1 }}>
           <div>
             <AddTweet addTweet={this.props.addTweet} />
             <br />
           </div>
           <div>
-            <TweetList tweets={this.props.tweets} activeCategory={this.props.activeCategory} />
+            <TweetList
+              tweets={this.props.tweets}
+              activeCategory={this.props.activeCategory}
+              setActiveCategory={this.props.setActiveCategory}
+            />
           </div>
         </Col>
       </Row>

@@ -11,22 +11,20 @@ class Category extends Component {
   setActive() {
     this.props.setActive(this.props.name)
   }
-  clearActive() {
+  clearActive(e) {
+    e.preventDefault()
     this.props.setActive(null)
   }
   render() {
     let { activeCategory, name } = this.props
     let isActive = activeCategory === name
     let clearButton = isActive ? (
-      <Badge onClick={this.clearActive} color="danger">
-        Clear
+      <Badge href="#" onClick={this.clearActive} color="danger">
+        Clear filter
       </Badge>
     ) : null
     return (
-      <ListGroupItem
-        color={isActive ? 'info' : null}
-        onClick={isActive ? this.clearActive : this.setActive}
-      >
+      <ListGroupItem color={isActive ? 'info' : null} onClick={isActive ? null : this.setActive}>
         {name} {clearButton}
       </ListGroupItem>
     )

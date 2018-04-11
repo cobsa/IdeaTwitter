@@ -22,6 +22,7 @@ class TweetList extends Component {
             tweet={tweet.tweet}
             categories={tweet.categories}
             time={tweet.time}
+            setActiveCategory={this.props.setActiveCategory}
           />
         )
       }
@@ -32,7 +33,8 @@ class TweetList extends Component {
 
 TweetList.propTypes = {
   tweets: PropTypes.array,
-  activeCategory: PropTypes.string
+  activeCategory: PropTypes.string,
+  setActiveCategory: PropTypes.func
 }
 
 export default TweetList
